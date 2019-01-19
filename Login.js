@@ -36,6 +36,9 @@ inscriptions = () => {
    this.props.history.push("/inscriptions");  
 }
 
+choixInscriptions = () => {
+  this.props.history.push("/choixInscriptions");  
+}
   render() {
     
    
@@ -45,20 +48,20 @@ inscriptions = () => {
 
         <Text style={styles.welcome}>Right Now !</Text>
 
-        <Text style={styles.instructions}>Identifiant :</Text>
+        <Text style={styles.instructions}>Adresse mail :</Text>
         
-        <TextInput style={styles.textinput}  value={this.state.user.id | ""} onChangeText={this.handleId}/>
+        <TextInput style={styles.textinput}  onChangeText={this.handleId}/>
 
         <Text style={styles.instructions}>Mot de Passe :</Text>
 
-        <TextInput style={styles.textinput} secureTextEntry={true} value={this.state.user.mdp | ""} onChangeText={this.handleMdp}/>
+        <TextInput style={styles.textinput} secureTextEntry={true}  onChangeText={this.handleMdp}/>
 
         <Button style={styles.buttton}
         onPress={this.test}
         title= "Connexion"
         />
 
-        <Text style={styles.koz} onPress={this.inscriptions}>Pas de compte ? Cliquez ici pour vous Inscrire ! ! !</Text>
+        <Text style={styles.koz} onPress={this.choixInscriptions}>Pas de compte ? Cliquez ici pour vous Inscrire ! ! !</Text>
         
       </View>
     );

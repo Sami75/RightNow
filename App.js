@@ -12,6 +12,8 @@ import {NativeRouter, Switch, Route} from 'react-router-native'
 
 import Login from './Login.js';
 import Inscriptions from './Inscriptions.js';
+import choixInscriptions from './ChoixInscriptions.js';
+import InscriptionsPro from './InscriptionsPro';
 
 
 export default class App extends Component {
@@ -23,7 +25,9 @@ export default class App extends Component {
         <View style={styles.container}> 
           <Switch>
             <Route exact path="/" component={Login} />
+            <Route exact path="/choixInscriptions" component={choixInscriptions} />
             <Route exact path="/inscriptions" component={Inscriptions} />
+            <Route exact path="/inscriptionsPro" component={InscriptionsPro} />
           </Switch>
         </View>
       </NativeRouter>
