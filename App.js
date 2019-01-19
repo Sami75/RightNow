@@ -13,13 +13,6 @@ import {NativeRouter, Switch, Route} from 'react-router-native'
 import Login from './Login.js';
 import Inscriptions from './Inscriptions.js';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
-
 
 export default class App extends Component {
 
@@ -34,7 +27,7 @@ export default class App extends Component {
           </Switch>
         </View>
       </NativeRouter>
-    );
+    )
   }
 }
 
@@ -43,6 +36,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+
     backgroundColor: '#1E7FCB',
     fontSize: 20,
   },
