@@ -2,11 +2,22 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, Button, TextInput, ScrollView} from 'react-native';
 import axios from 'axios';
 
+const URI = 'http://localhost:8000';
+
 export default class Inscriptions extends Component {
   constructor(props) {
 		super(props);
 		this.state = {
-      user: [],
+		nom: "",
+		prenom: "",
+		mail: "",
+		mdp: "",
+		rue: "",
+		adresse: "",
+		cdp: "",
+		ville: "",
+		sexe: "",
+		telephone: "",
     };
 	};
 
@@ -16,95 +27,87 @@ export default class Inscriptions extends Component {
 	
 	handlePrenom = (text) => {
 		this.setState({
-			user: {
-				...this.state.user,
 				prenom: text
-			},
 		});
 	}
 	
 	handleNom = (text) => {
 		this.setState({ 
-			user: {
-				...this.state.user,
 				nom: text
-			},
 		});
 	}
 
 	handleMail = (text) => {
 		this.setState({
-			user: {
-				...this.state.user,
 				mail: text
-			},
 		});
 	}
 	
 	handleMdp = (text) => {
 		this.setState({ 
-			user: {
-				...this.state.user,
 				mdp: text
-			},
 		});
 	}
 	handleRue = (text) => {
 		this.setState({
-			user: {
-				...this.state.user,
 				rue: text
-			},
 		});
 	}
 	
 	handleAdresse = (text) => {
 		this.setState({ 
-			user: {
-				...this.state.user,
 				adresse: text
-			},
 		});
 	}
 	handleCdp = (text) => {
 		this.setState({
-			user: {
-				...this.state.user,
 				cdp: text
-			},
 		});
 	}
 	
 	handleVille = (text) => {
 		this.setState({ 
-			user: {
-				...this.state.user,
 				ville: text
-			},
 		});
 	}
 	handleSexe = (text) => {
 		this.setState({
-			user: {
-				...this.state.user,
 				sexe: text
-			},
 		});
 	}
 	
 	handleTel = (text) => {
 		this.setState({ 
-			user: {
-				...this.state.user,
 				tel: text
-			},
 		});
 	}
 
-	go = () => {		
-
-		axios.post('http://127.0.0.1:8000/api/user', {user : this.state.user}).then(response => {console.log(response)}) 
-
+	go = () => {
+		fetch('https://6e676a32.ngrok.io/api/users', {
+		  method: 'POST',
+		  headers: {
+		    Accept: 'application/json',
+		    'Content-Type': 'application/json',
+		  },
+		  body: JSON.stringify({
+			  	nom: this.state.nom,
+			  	prenom: this.state.prenom,
+			  	mail: this.state.mail,
+			  	password: this.state.mdp,
+			  	numRue: this.state.rue,
+			  	adresse: this.state.adresse,
+			  	cdp: this.state.cdp,
+			  	ville: this.state.ville,
+			  	sexe: this.state.sexe,
+			  	telephone: this.state.tel,
+		  }),
+		}).then((response) => {
+			response.json();
+			console.log(response);
+			})
+		    .catch((error) => {
+		      console.error(error);
+		    });
 	}
 
 	render() {

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, Button, TextInput} from 'react-native';
+import {Platform, StyleSheet, Text, View, Button, TextInput, Image} from 'react-native';
 
 
 export default class Login extends Component {
@@ -11,14 +11,31 @@ export default class Login extends Component {
 }
 
 test = () => {
-  alert("L'identifiant est " + this.state.user.id + " et le mot de passe est " + this.state.user.mdp)
+      fetch('https://6e676a32.ngrok.io/api/users/login', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+          mail: this.state.user.mail,
+          password: this.state.user.mdp
+      }),
+    }).then((response) => {
+      response.json();
+      console.log(response);
+      })
+        .catch((error) => {
+          console.error(error);
+        });
+
 }
 
-handleId = (text) => {
+handleMail = (text) => {
   this.setState({
     user: {
       ...this.state.user,
-      id: text
+      mail: text
     },
   });
 }
@@ -46,18 +63,21 @@ choixInscriptions = () => {
 
        <View style={styles.container}> 
 
-        <Text style={styles.welcome}>Right Now !</Text>
+        <Image style={styles.imgg}
+          source={require('./rn2.png')}
+        />
 
         <Text style={styles.instructions}>Adresse mail :</Text>
         
-        <TextInput style={styles.textinput}  onChangeText={this.handleId}/>
-
+        <TextInput style={styles.textinput} onChangeText={this.handleMail}/>
+        
         <Text style={styles.instructions}>Mot de Passe :</Text>
-
+        
         <TextInput style={styles.textinput} secureTextEntry={true}  onChangeText={this.handleMdp}/>
 
         <Button style={styles.buttton}
         onPress={this.test}
+        loading
         title= "Connexion"
         />
 
@@ -78,6 +98,10 @@ const styles = StyleSheet.create({
   },
   buttton: {
     marginTop: 40,
+    borderRadius: 20,
+  },
+  imgg: {
+    marginBottom: 40,
   },
   textinput: {
     marginBottom: 25,
@@ -98,10 +122,13 @@ const styles = StyleSheet.create({
     fontSize: 50,
     textAlign: 'center',
     marginBottom: 70,
+    fontFamily: 'System',
+    fontStyle: 'italic',
   },
   instructions: {
     textAlign: 'center',
     color: '#333333',
     marginBottom: 20,
+    textDecorationLine: 'underline',
   },
 });
