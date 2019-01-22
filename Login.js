@@ -15,36 +15,38 @@ export default class Login extends Component {
 
 
 test = () => {
-  fetch('https://396ef2a9.ngrok.io/api/users/login', {
-  method: 'POST',
-  headers: {
-    Accept: 'application/json',
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify({
-      mail: this.state.user.mail,
-      password: this.state.user.mdp
-  }),
-  })
-  .then((response) => {
-    return response.json();
-  })
-  .then((result) => {
-    if(result == "Wrong password or mail"){
-      this.setState({ 
-        reponse: result,
+
+  fetch('https://5865254c.ngrok.io/api/users/login', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+          mail: this.state.user.mail,
+          password: this.state.user.mdp
+      }),
+      })
+      .then((response) => {
+        return response.json();  
+      })
+      .then((result) => {
+        if(result == "Wrong password or mail"){
+          this.setState({ 
+            reponse: result,       
+          });
+        }
+        else{
+          this.setState({ 
+            reponse: "ok",
+            userResponse: result,
+          });
+        }
+      })
+      .catch((error) => {
+          console.error(error);
       });
-    }
-    else{
-      this.setState({ 
-        reponse: "ok",
-        userResponse: result,
-      });
-    }
-  })
-  .catch((error) => {
-      console.error(error);
-  });
+
 }
 
 handleMail = (text) => {
@@ -89,26 +91,27 @@ logg = () => {
 
        <View style={styles.container}> 
 
-        
+      
 
           <Image style={styles.imgg}
             source={require('./rouj3.png')}
           />
           
-          {
-            this.state.reponse == "Wrong password or mail"?
-            <Text style={styles.erreur}> Le mot de passe ou l'adresse mail est incorrecte :</Text>:
-            this.logg()
-          }
+        {
+          this.state.reponse == "Wrong password or mail" ?
+          <Text style={styles.erreur}> Le mot de passe ou l'adresse mail est incorrecte !</Text> :
+          this.logg()
+        }
 
+        <Text style={styles.instructions}>Adresse mail :</Text>
         
-          <Text style={styles.instructions}>Adressee mail :</Text>
-          
-          <TextInput style={styles.textinput} onChangeText={this.handleMail}/>
-          
-          <Text style={styles.instructions}>Mot de Passe :</Text>
-          
-          <TextInput style={styles.textinput} secureTextEntry={true}  onChangeText={this.handleMdp}/>
+        <TextInput style={styles.textinput} onChangeText={this.handleMail}/>
+        
+        <Text style={styles.instructions}>Mot de Passe :</Text>
+        
+        <TextInput style={styles.textinput} secureTextEntry={true}  onChangeText={this.handleMdp}/>
+
+      
 
           <Button style={styles.buttton}
           onPress={this.test}
