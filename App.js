@@ -10,12 +10,12 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, Button, TextInput} from 'react-native';
 import {NativeRouter, Switch, Route} from 'react-router-native'
 
+import Intro from './Intro.js';
 import Login from './Login.js';
 import Inscriptions from './Inscriptions.js';
 import choixInscriptions from './ChoixInscriptions.js';
 import InscriptionsPro from './InscriptionsPro';
-
-
+import Accueil from './Accueil.js';
 export default class App extends Component {
 
   render() {
@@ -24,10 +24,12 @@ export default class App extends Component {
       <NativeRouter>
         <View style={styles.container}> 
           <Switch>
-            <Route exact path="/" component={Login} />
+            <Route exact path="/" component={Intro} />
+            <Route exact path="/login" component={Login} />
             <Route exact path="/choixInscriptions" component={choixInscriptions} />
             <Route exact path="/inscriptions" component={Inscriptions} />
             <Route exact path="/inscriptionsPro" component={InscriptionsPro} />
+            <Route exact path="/accueil" component={Accueil}/>
           </Switch>
         </View>
       </NativeRouter>

@@ -83,7 +83,7 @@ export default class Inscriptions extends Component {
 	}
 
 	go = () => {
-		fetch('https://6e676a32.ngrok.io/api/users', {
+		fetch('https://caf60801.ngrok.io/api/users', {
 		  method: 'POST',
 		  headers: {
 		    Accept: 'application/json',

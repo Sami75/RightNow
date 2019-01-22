@@ -7,11 +7,14 @@ export default class Login extends Component {
     super(props);
     this.state = {
       user: [],
+      reponse:"",
+      test: "",
     };
 }
 
+
 test = () => {
-      fetch('https://6e676a32.ngrok.io/api/users/login', {
+      fetch('https://caf60801.ngrok.io/api/users/login', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -22,13 +25,28 @@ test = () => {
           password: this.state.user.mdp
       }),
     }).then((response) => {
+      
       response.json();
+    
+      if(response._bodyText == '"Wrong password or mail"'){
+        this.setState({ 
+          reponse: response._bodyText,       
+        });
+      }
+      else{
+        this.setState({ 
+          reponse: 'ok',       
+        });
+      }
+      
       console.log(response);
       })
+      
         .catch((error) => {
           console.error(error);
         });
 
+      console.log(this.state.reponse)
 }
 
 handleMail = (text) => {
@@ -56,6 +74,17 @@ inscriptions = () => {
 choixInscriptions = () => {
   this.props.history.push("/choixInscriptions");  
 }
+
+logg = () => {
+  
+  if(this.state.reponse == 'ok'){
+
+      this.props.history.push("/accueil", {
+        val1: this.state.user,
+        val2: 5
+      })
+    }
+}
   render() {
     
    
@@ -66,8 +95,14 @@ choixInscriptions = () => {
         <Image style={styles.imgg}
           source={require('./rn2.png')}
         />
+        
+        {
+          this.state.reponse == '"Wrong password or mail"'?
+          <Text style={styles.erreur}> Le mot de passe ou l'adresse mail est incorrecte :</Text>:
+          this.logg()
+        }
 
-        <Text style={styles.instructions}>Adresse mail :</Text>
+        <Text style={styles.instructions}>Adressee mail :</Text>
         
         <TextInput style={styles.textinput} onChangeText={this.handleMail}/>
         
@@ -102,6 +137,9 @@ const styles = StyleSheet.create({
   },
   imgg: {
     marginBottom: 40,
+  },
+  erreur:{
+    color: 'red',
   },
   textinput: {
     marginBottom: 25,
