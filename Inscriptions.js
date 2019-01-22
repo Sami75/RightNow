@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, Button, TextInput, ScrollView} from 'react-native';
 import axios from 'axios';
 
-const URI = 'http://localhost:8000';
 
 export default class Inscriptions extends Component {
   constructor(props) {
@@ -83,7 +82,7 @@ export default class Inscriptions extends Component {
 	}
 
 	go = () => {
-		fetch('https://caf60801.ngrok.io/api/users', {
+		fetch('https://5865254c.ngrok.io/api/users', {
 		  method: 'POST',
 		  headers: {
 		    Accept: 'application/json',
