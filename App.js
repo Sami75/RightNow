@@ -16,6 +16,7 @@ import Inscriptions from './Inscriptions.js';
 import choixInscriptions from './ChoixInscriptions.js';
 import InscriptionsPro from './InscriptionsPro';
 import Accueil from './Accueil.js';
+import FormulaireJob from './FormulaireJob.js';
 export default class App extends Component {
 
   render() {
@@ -30,6 +31,7 @@ export default class App extends Component {
             <Route exact path="/inscriptions" component={Inscriptions} />
             <Route exact path="/inscriptionsPro" component={InscriptionsPro} />
             <Route exact path="/accueil" component={Accueil}/>
+            <Route exact path="/formulaireJob" component={FormulaireJob}/>
           </Switch>
         </View>
       </NativeRouter>

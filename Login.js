@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, Button, TextInput, Image} from 'react-native';
+import {Platform, StyleSheet, Text, View, Button, TextInput, Image, ScrollView} from 'react-native';
 
 
 export default class Login extends Component {
@@ -9,44 +9,42 @@ export default class Login extends Component {
       user: [],
       reponse:"",
       test: "",
+      userResponse: [],
     };
 }
 
 
 test = () => {
-      fetch('https://caf60801.ngrok.io/api/users/login', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-          mail: this.state.user.mail,
-          password: this.state.user.mdp
-      }),
-    }).then((response) => {
-      
-      response.json();
-    
-      if(response._bodyText == '"Wrong password or mail"'){
-        this.setState({ 
-          reponse: response._bodyText,       
-        });
-      }
-      else{
-        this.setState({ 
-          reponse: 'ok',       
-        });
-      }
-      
-      console.log(response);
-      })
-      
-        .catch((error) => {
-          console.error(error);
-        });
-
-      console.log(this.state.reponse)
+  fetch('https://396ef2a9.ngrok.io/api/users/login', {
+  method: 'POST',
+  headers: {
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+      mail: this.state.user.mail,
+      password: this.state.user.mdp
+  }),
+  })
+  .then((response) => {
+    return response.json();
+  })
+  .then((result) => {
+    if(result == "Wrong password or mail"){
+      this.setState({ 
+        reponse: result,
+      });
+    }
+    else{
+      this.setState({ 
+        reponse: "ok",
+        userResponse: result,
+      });
+    }
+  })
+  .catch((error) => {
+      console.error(error);
+  });
 }
 
 handleMail = (text) => {
@@ -80,8 +78,7 @@ logg = () => {
   if(this.state.reponse == 'ok'){
 
       this.props.history.push("/accueil", {
-        val1: this.state.user,
-        val2: 5
+        val1: this.state.userResponse,
       })
     }
 }
@@ -92,32 +89,37 @@ logg = () => {
 
        <View style={styles.container}> 
 
-        <Image style={styles.imgg}
-          source={require('./rn2.png')}
-        />
         
-        {
-          this.state.reponse == '"Wrong password or mail"'?
-          <Text style={styles.erreur}> Le mot de passe ou l'adresse mail est incorrecte :</Text>:
-          this.logg()
-        }
 
-        <Text style={styles.instructions}>Adressee mail :</Text>
-        
-        <TextInput style={styles.textinput} onChangeText={this.handleMail}/>
-        
-        <Text style={styles.instructions}>Mot de Passe :</Text>
-        
-        <TextInput style={styles.textinput} secureTextEntry={true}  onChangeText={this.handleMdp}/>
+          <Image style={styles.imgg}
+            source={require('./rouj3.png')}
+          />
+          
+          {
+            this.state.reponse == "Wrong password or mail"?
+            <Text style={styles.erreur}> Le mot de passe ou l'adresse mail est incorrecte :</Text>:
+            this.logg()
+          }
 
-        <Button style={styles.buttton}
-        onPress={this.test}
-        loading
-        title= "Connexion"
-        />
-
-        <Text style={styles.koz} onPress={this.choixInscriptions}>Pas de compte ? Cliquez ici pour vous Inscrire ! ! !</Text>
         
+          <Text style={styles.instructions}>Adressee mail :</Text>
+          
+          <TextInput style={styles.textinput} onChangeText={this.handleMail}/>
+          
+          <Text style={styles.instructions}>Mot de Passe :</Text>
+          
+          <TextInput style={styles.textinput} secureTextEntry={true}  onChangeText={this.handleMdp}/>
+
+          <Button style={styles.buttton}
+          onPress={this.test}
+          loading
+          title= "Connexion"
+          />
+
+          <Text style={styles.koz} onPress={this.choixInscriptions}>Pas de compte ? Cliquez ici pour vous Inscrire ! ! !</Text>
+
+        
+
       </View>
     );
   }
@@ -137,6 +139,8 @@ const styles = StyleSheet.create({
   },
   imgg: {
     marginBottom: 40,
+    width: 250,
+    height : 150,
   },
   erreur:{
     color: 'red',

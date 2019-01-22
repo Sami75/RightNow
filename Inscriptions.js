@@ -83,7 +83,7 @@ export default class Inscriptions extends Component {
 	}
 
 	go = () => {
-		fetch('https://caf60801.ngrok.io/api/users', {
+		fetch('https://396ef2a9.ngrok.io/api/users', {
 		  method: 'POST',
 		  headers: {
 		    Accept: 'application/json',
@@ -103,7 +103,8 @@ export default class Inscriptions extends Component {
 		  }),
 		}).then((response) => {
 			response.json();
-			console.log(response);
+			alert("Votre compte a été créé avec succes !");
+			this.props.history.push("/login");
 			})
 		    .catch((error) => {
 		      console.error(error);
@@ -185,7 +186,7 @@ const styles = StyleSheet.create({
     borderRadius: 7,
     borderWidth: 1,
     backgroundColor: 'white',
-		width: 360,
+		width: '100%',
 		alignItems: 'center',
  },
   koz: {

@@ -10,8 +10,8 @@ Inscriptions = () => {
     this.props.history.push("/inscriptions");  
  }
 
-InscriptionsPro = () => {
-    this.props.history.push("/inscriptionsPro");  
+Login = () => {
+    this.props.history.push("/login");  
  }
 
  render() {
@@ -19,7 +19,7 @@ InscriptionsPro = () => {
         <View style={styles.container} >
             <Button style={styles.boutoun} title="Client" onPress={this.Inscriptions} />
 
-            <Button style={styles.boutoun} title="Professionnel" onPress={this.InscriptionsPro} />
+            <Button style={styles.boutoun} title="Retour" onPress={this.Login} />
         </View>
     );
 }	
