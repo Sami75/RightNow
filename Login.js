@@ -9,12 +9,13 @@ export default class Login extends Component {
       user: [],
       reponse:"",
       test: "",
+      userResponse: [],
     };
 }
 
 
 test = () => {
-      fetch('https://caf60801.ngrok.io/api/users/login', {
+      fetch('https://5865254c.ngrok.io/api/users/login', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -24,29 +25,26 @@ test = () => {
           mail: this.state.user.mail,
           password: this.state.user.mdp
       }),
-    }).then((response) => {
-      
-      response.json();
-    
-      if(response._bodyText == '"Wrong password or mail"'){
-        this.setState({ 
-          reponse: response._bodyText,       
-        });
-      }
-      else{
-        this.setState({ 
-          reponse: 'ok',       
-        });
-      }
-      
-      console.log(response);
       })
-      
-        .catch((error) => {
+      .then((response) => {
+        return response.json();  
+      })
+      .then((result) => {
+        if(result == "Wrong password or mail"){
+          this.setState({ 
+            reponse: result,       
+          });
+        }
+        else{
+          this.setState({ 
+            reponse: "ok",
+            userResponse: result,
+          });
+        }
+      })
+      .catch((error) => {
           console.error(error);
-        });
-
-      console.log(this.state.reponse)
+      });
 }
 
 handleMail = (text) => {
@@ -80,8 +78,7 @@ logg = () => {
   if(this.state.reponse == 'ok'){
 
       this.props.history.push("/accueil", {
-        val1: this.state.user,
-        val2: 5
+        val1: this.state.userResponse,
       })
     }
 }
@@ -97,12 +94,12 @@ logg = () => {
         />
         
         {
-          this.state.reponse == '"Wrong password or mail"'?
-          <Text style={styles.erreur}> Le mot de passe ou l'adresse mail est incorrecte :</Text>:
+          this.state.reponse == "Wrong password or mail" ?
+          <Text style={styles.erreur}> Le mot de passe ou l'adresse mail est incorrecte !</Text> :
           this.logg()
         }
 
-        <Text style={styles.instructions}>Adressee mail :</Text>
+        <Text style={styles.instructions}>Adresse mail :</Text>
         
         <TextInput style={styles.textinput} onChangeText={this.handleMail}/>
         
