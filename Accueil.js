@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, Button, TextInput, Image, match} from 'react-native';
+import {Platform, StyleSheet, Text, View, Button, TextInput, Image, match, TouchableOpacity} from 'react-native';
 import MapView from 'react-native-maps';
 
 
@@ -17,7 +17,7 @@ export default class Accueil extends Component {
 }
 
 lister = () => {
-  fetch('https://396ef2a9.ngrok.io/api/demande', {
+  fetch('https://c0e31050.ngrok.io/api/demande', {
   method: 'GET',
   headers: {
     Accept: 'application/json',
@@ -88,15 +88,22 @@ render() {
         </Text>
         
         <MapView
-            style={styles.map}
-            region={{
-              latitude: 48.8833554,
-              longitude: 2.3688094999999976,
-              latitudeDelta: 0.1,
-              longitudeDelta: 0.1
-            }}
-          >
-          </MapView>
+          style={styles.map}
+          region={{
+            latitude: 48.8833554,
+            longitude: 2.3688094999999976,
+            latitudeDelta: 0.1,
+            longitudeDelta: 0.1
+          }}
+        >
+        <MapView.Marker
+          coordinate={{latitude: 48.886070,
+          longitude: 2.371540}}
+          title={"title"}
+          description={"description"}
+          onLongPress={() => alert("Hehehe")}
+         />
+        </MapView>
 
         <Button title="Afficher les Demande" onPress={this.lister} />
 
