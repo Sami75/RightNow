@@ -13,7 +13,7 @@ export default class FormulaireJob extends Component {
 };
 
 go = () => {
-    fetch('https://396ef2a9.ngrok.io/api/demande', {
+    fetch('https://08d034a1.ngrok.io/api/demande', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -23,7 +23,9 @@ go = () => {
         intitule: this.state.intitule,
         temps: this.state.temps,
         prix: this.state.prix,
-
+        latitude: 54.5454,
+        longitude: 42.56,
+        userid: this.props.location.state.val1[0].id,
       }),
     }).then((response) => {
         response.json();

@@ -11,7 +11,6 @@ export default class Inscriptions extends Component {
 		prenom: "",
 		mail: "",
 		mdp: "",
-		rue: "",
 		adresse: "",
 		cdp: "",
 		ville: "",
@@ -47,11 +46,6 @@ export default class Inscriptions extends Component {
 				mdp: text
 		});
 	}
-	handleRue = (text) => {
-		this.setState({
-				rue: text
-		});
-	}
 	
 	handleAdresse = (text) => {
 		this.setState({ 
@@ -83,7 +77,7 @@ export default class Inscriptions extends Component {
 
 	go = () => {
 
-	  fetch('https://5865254c.ngrok.io/api/users', {
+	  fetch('https://08d034a1.ngrok.io/api/users', {
 		  method: 'POST',
 		  headers: {
 		    Accept: 'application/json',
@@ -94,7 +88,6 @@ export default class Inscriptions extends Component {
 			  	prenom: this.state.prenom,
 			  	mail: this.state.mail,
 			  	password: this.state.mdp,
-			  	numRue: this.state.rue,
 			  	adresse: this.state.adresse,
 			  	cdp: this.state.cdp,
 			  	ville: this.state.ville,
@@ -132,10 +125,6 @@ export default class Inscriptions extends Component {
 					<Text style={styles.instructions} >Mot de passe :</Text>
 
 					<TextInput style={styles.textinput} secureTextEntry={true} onChangeText={this.handleMdp}/>
-
-					<Text style={styles.instructions}>Numero de Rue :</Text>
-
-					<TextInput style={styles.textinput}  onChangeText={this.handleRue}/>
 
 					<Text style={styles.instructions}>Adresse :</Text>
 
