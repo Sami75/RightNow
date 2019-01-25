@@ -13,7 +13,7 @@ export default class FormulaireJob extends Component {
 };
 
 go = () => {
-    fetch('https://08d034a1.ngrok.io/api/demande', {
+    fetch('https://08ca17fa.ngrok.io/api/demande', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -23,8 +23,8 @@ go = () => {
         intitule: this.state.intitule,
         temps: this.state.temps,
         prix: this.state.prix,
-        latitude: 54.5454,
-        longitude: 42.56,
+        latitude: 48.872213,
+        longitude: 2.360714,
         userid: this.props.location.state.val1[0].id,
       }),
     }).then((response) => {
@@ -68,9 +68,9 @@ retour = () => {
 render() {
    
     return (
-
+      <ScrollView>
         <View style={styles.container}> 
-                
+    
                 <Text style={styles.welcome}>Formulaire de demande</Text>
 
                 <Text style={styles.instructions}>Intutilé de la demande</Text>
@@ -86,6 +86,7 @@ render() {
                     style={styles.but}
                     onPress={this.go}
                     title= "Envoyer la demande"
+                    color="#C01A2E"
                 />
                 
                 <Text style={styles.saut}></Text>
@@ -94,8 +95,10 @@ render() {
                     style={styles.but}
                     onPress={this.retour}
                     title= "Retour"
+                    color="#C01A2E"
                 />
         </View>
+        </ScrollView>
     );
   }
 }
@@ -105,7 +108,7 @@ const styles = StyleSheet.create({
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: '#1E7FCB',
+      backgroundColor: '#f2f2f2',
       fontSize: 20,
     },
     textinput: {

@@ -77,7 +77,7 @@ export default class Inscriptions extends Component {
 
 	go = () => {
 
-	  fetch('https://08d034a1.ngrok.io/api/users', {
+	  fetch('https://08ca17fa.ngrok.io/api/users', {
 		  method: 'POST',
 		  headers: {
 		    Accept: 'application/json',
@@ -147,10 +147,10 @@ export default class Inscriptions extends Component {
 					<TextInput style={styles.textinput}  onChangeText={this.handleTel}/>
 
 
-					<Button title="Inscription" onPress={this.go} />
+					<Button title="Inscription" color="#C01A2E" onPress={this.go} />
 					
 
-					<Button title="Retour" onPress={() => this.props.history.push("/choixInscriptions")} />
+					<Button title="Retour" color="#C01A2E" onPress={() => this.props.history.push("/login")} />
 					</ScrollView>
 			</View>
 		);
@@ -162,7 +162,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#1E7FCB',
+    backgroundColor: '#f2f2f2',
     fontSize: 20,
   },
   buttton: {
@@ -175,8 +175,8 @@ const styles = StyleSheet.create({
     borderRadius: 7,
     borderWidth: 1,
     backgroundColor: 'white',
-		width: '100%',
-		alignItems: 'center',
+	width: '100%',
+	alignItems: 'center',
  },
   koz: {
     marginTop: 20,

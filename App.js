@@ -17,6 +17,11 @@ import choixInscriptions from './ChoixInscriptions.js';
 import InscriptionsPro from './InscriptionsPro';
 import Accueil from './Accueil.js';
 import FormulaireJob from './FormulaireJob.js';
+import Details from './Details.js';
+import Profil from './Profil.js';
+import SuiviJob from './SuiviJob.js';
+
+
 export default class App extends Component {
 
   render() {
@@ -32,6 +37,9 @@ export default class App extends Component {
             <Route exact path="/inscriptionsPro" component={InscriptionsPro} />
             <Route exact path="/accueil" component={Accueil}/>
             <Route exact path="/formulaireJob" component={FormulaireJob}/>
+            <Route exact path="/details" component={Details}/>
+            <Route exact path="/profil" component={Profil}/>          
+            <Route exact path="/suiviJob" component={SuiviJob}/>          
           </Switch>
         </View>
       </NativeRouter>
@@ -44,8 +52,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-
-    backgroundColor: '#1E7FCB',
+    backgroundColor: '#f2f2f2',
     fontSize: 20,
   },
 });
