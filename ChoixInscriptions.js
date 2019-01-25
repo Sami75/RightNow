@@ -28,7 +28,7 @@ Login = () => {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#1E7FCB',
+        backgroundColor: '#f2f2f2',
     },
     boutoun: {
         backgroundColor: 'green',

@@ -16,7 +16,7 @@ export default class Login extends Component {
 
 test = () => {
 
-  fetch('https://08d034a1.ngrok.io/api/users/login', {
+  fetch('https://08ca17fa.ngrok.io/api/users/login', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -89,6 +89,7 @@ logg = () => {
    
     return (
 
+      <ScrollView style={styles.scroll}>
        <View style={styles.container}> 
 
       
@@ -117,13 +118,15 @@ logg = () => {
           onPress={this.test}
           loading
           title= "Connexion"
+          color="#C01A2E"
           />
 
-          <Text style={styles.koz} onPress={this.choixInscriptions}>Pas de compte ? Cliquez ici pour vous Inscrire ! ! !</Text>
+          <Text style={styles.koz} onPress={this.inscriptions}>Pas de compte ? Cliquez ici pour vous Inscrire ! ! !</Text>
 
         
 
       </View>
+      </ScrollView>
     );
   }
 }
@@ -133,7 +136,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#1E7FCB',
+    backgroundColor: '#f2f2f2',
     fontSize: 20,
   },
   buttton: {
@@ -176,4 +179,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     textDecorationLine: 'underline',
   },
+  scroll: {
+    width: '100%',
+  }
 });
